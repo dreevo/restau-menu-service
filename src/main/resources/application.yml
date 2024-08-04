@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: menu-service
+server:
+  port: 9001
+  tomcat:
+    keep-alive-timeout: 15s
+    connection-timeout: 2s
+    threads:
+      max: 50
+      min-spare: 5
