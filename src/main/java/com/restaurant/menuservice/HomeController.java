@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
+    private final RestaurantProperties restaurantProperties;
+    public HomeController(RestaurantProperties restaurantProperties) {
+        this.restaurantProperties = restaurantProperties;
+    }
+
     @GetMapping("/")
     public String home() {
-        return "Welcome to our Restaurant !";
+        return restaurantProperties.getGreeting();
     }
 }

@@ -2,9 +2,11 @@ package com.restaurant.menuservice.web;
 
 import com.restaurant.menuservice.domain.Food;
 import com.restaurant.menuservice.domain.FoodService;
-import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("foods")
@@ -42,6 +44,6 @@ public class FoodController {
 
     @PutMapping("{ref}")
     public Food put(@PathVariable @Valid String ref, @RequestBody Food food) {
-        return foodService.editFoodDetails(ref, food);
+        return foodService.editFoodDetails(food, ref);
     }
 }
