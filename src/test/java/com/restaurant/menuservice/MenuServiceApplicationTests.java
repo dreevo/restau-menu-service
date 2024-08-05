@@ -22,7 +22,7 @@ class MenuServiceApplicationTests {
 		var foodToCreate = Food.of(foodRef, "desc", 5.5);
 		Food expectedFood = webTestClient
 				.post()
-				.uri("/food")
+				.uri("/foods")
 				.bodyValue(foodToCreate)
 				.exchange()
 				.expectStatus().isCreated()
@@ -31,7 +31,7 @@ class MenuServiceApplicationTests {
 
 		webTestClient
 				.get()
-				.uri("/food/" + foodRef)
+				.uri("/foods/" + foodRef)
 				.exchange()
 				.expectStatus().is2xxSuccessful()
 				.expectBody(Food.class).value(actualFood -> {
@@ -43,7 +43,7 @@ class MenuServiceApplicationTests {
 	@Test
 	void whenPostRequestThenFoodCreated() {
 		var expectedFood = Food.of("4546745430", "desc", 5.5);
-		webTestClient.post().uri("/food").bodyValue(expectedFood)
+		webTestClient.post().uri("/foods").bodyValue(expectedFood)
 				.exchange()
 				.expectStatus().isCreated()
 				.expectBody(Food.class).value(result -> {
@@ -59,7 +59,7 @@ class MenuServiceApplicationTests {
 		var foodToCreate = Food.of(foodRef, "desc", 5.5);
 		Food createdFood = webTestClient
 				.post()
-				.uri("/food")
+				.uri("/foods")
 				.bodyValue(foodToCreate)
 				.exchange()
 				.expectStatus().isCreated()
@@ -70,7 +70,7 @@ class MenuServiceApplicationTests {
 
 		webTestClient
 				.put()
-				.uri("/food/" + foodRef)
+				.uri("/foods/" + foodRef)
 				.bodyValue(foodToUpdate)
 				.exchange()
 				.expectStatus().isOk()
@@ -87,20 +87,20 @@ class MenuServiceApplicationTests {
 		var foodToCreate = Food.of(foodRef, "desc", 5.5);
 		webTestClient
 				.post()
-				.uri("/food")
+				.uri("/foods")
 				.bodyValue(foodToCreate)
 				.exchange()
 				.expectStatus().isCreated();
 
 		webTestClient
 				.delete()
-				.uri("/food/" + foodRef)
+				.uri("/foods/" + foodRef)
 				.exchange()
 				.expectStatus().isNoContent();
 
 		webTestClient
 				.get()
-				.uri("/food/" + foodRef)
+				.uri("/foods/" + foodRef)
 				.exchange()
 				.expectStatus().isNotFound()
 				.expectBody(String.class).value(errorMessage ->

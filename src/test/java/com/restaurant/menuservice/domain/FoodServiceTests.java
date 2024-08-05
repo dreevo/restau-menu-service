@@ -27,7 +27,7 @@ public class FoodServiceTests {
         when(foodRepository.existsByRef(ref)).thenReturn(true);
         Assertions.assertThatThrownBy(() -> foodService.addFoodToMenu(foodToCreate))
                 .isInstanceOf(FoodAlreadyExistsException.class)
-                .hasMessage("Food with ref " + ref + " already exists");
+                .hasMessage("Food with ref " + ref + " already exists.");
 
     }
 
