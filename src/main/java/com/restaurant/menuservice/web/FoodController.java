@@ -3,10 +3,10 @@ package com.restaurant.menuservice.web;
 import com.restaurant.menuservice.domain.Food;
 import com.restaurant.menuservice.domain.FoodService;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("foods")

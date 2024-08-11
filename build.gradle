@@ -1,12 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
-    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
 }
 
 group = 'com.restaurant'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
 
 description = 'Provides functionality for managing the food in the restaurant menu.'
 
@@ -21,8 +20,8 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "2021.0.3")
-    set('testcontainersVersion', "1.17.3")
+    set('springCloudVersion', "2021.0.9")
+    set('testcontainersVersion', "1.19.8")
 }
 
 configurations {
@@ -58,11 +57,31 @@ tasks.named('test') {
 }
 
 tasks.named('bootBuildImage') {
+    if (System.getProperty( "os.arch" ).toLowerCase().startsWith('aarch')) {
+        builder = "dashaun/builder:tiny"
+        environment = ["BP_NATIVE_IMAGE" : "true"]
+    }
+}
+
+tasks.named('bootBuildImage') {
     if (System.getProperty("os.arch").toLowerCase().startsWith('aarch')) {
         builder = "ghcr.io/thomasvitale/java-builder-arm64"
     }
     builder = "paketobuildpacks/builder:tiny"
 }
+
+bootBuildImage {
+    imageName = "${project.name}"
+    environment = ["BP_JVM_VERSION": "17.*"]
+    docker {
+        publishRegistry {
+            username = project.findProperty("registryUsername")
+            password = project.findProperty("registryToken")
+            url = project.findProperty("registryUrl")
+        }
+    }
+}
+
 
 bootRun {
     systemProperty 'spring.profiles.active', 'testdata'
