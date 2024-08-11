@@ -57,13 +57,6 @@ tasks.named('test') {
 }
 
 tasks.named('bootBuildImage') {
-    if (System.getProperty( "os.arch" ).toLowerCase().startsWith('aarch')) {
-        builder = "dashaun/builder:tiny"
-        environment = ["BP_NATIVE_IMAGE" : "true"]
-    }
-}
-
-tasks.named('bootBuildImage') {
     if (System.getProperty("os.arch").toLowerCase().startsWith('aarch')) {
         builder = "ghcr.io/thomasvitale/java-builder-arm64"
     }
