@@ -21,6 +21,8 @@ spring:
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
 server:
   port: 9001
   tomcat:
@@ -29,6 +31,8 @@ server:
     threads:
       max: 50
       min-spare: 5
+  shutdown: graceful
+
 
 restaurant:
   greeting: Welcome to our restaurant portal !

@@ -38,6 +38,13 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
+      - name: Install tools
+        uses: alexellis/arkade-get@master
+        with:
+          kubeconform: latest
+      - name: Validate Kubernetes manifests
+        run: |
+          kubeconform --strict -
 
   package:
     name: Package and Publish
