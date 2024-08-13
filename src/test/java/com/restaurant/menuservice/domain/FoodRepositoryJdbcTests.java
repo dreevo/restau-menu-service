@@ -1,7 +1,7 @@
 package com.restaurant.menuservice.domain;
 
 
-import com.restaurant.menuservice.DataConfig;
+import com.restaurant.menuservice.config.DataConfig;
 import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;

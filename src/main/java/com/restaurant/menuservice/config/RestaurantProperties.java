@@ -1,4 +1,4 @@
-package com.restaurant.menuservice;
+package com.restaurant.menuservice.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

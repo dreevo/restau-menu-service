@@ -1,6 +1,7 @@
-package com.restaurant.menuservice;
+package com.restaurant.menuservice.web;
 
 
+import com.restaurant.menuservice.config.RestaurantProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
